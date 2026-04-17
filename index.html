@@ -32,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* Particle fog */
   #fog {
     position: fixed; top:0; left:0; width:100%; height:100%;
     pointer-events: none; z-index: 0; overflow: hidden;
@@ -51,7 +50,6 @@
     100% { opacity:0; transform: translateY(-60px) translateX(var(--dx)); }
   }
 
-  /* Glow blobs */
   .glow-blob {
     position: fixed;
     border-radius: 50%;
@@ -63,7 +61,6 @@
   .gb2 { width:400px; height:400px; background:rgba(139,26,26,0.06); bottom:0; right:-100px; }
   .gb3 { width:350px; height:250px; background:rgba(184,160,58,0.04); top:50%; left:40%; }
 
-  /* Noise texture overlay */
   body::before {
     content:'';
     position:fixed; inset:0;
@@ -71,7 +68,6 @@
     pointer-events:none; z-index:0; opacity:0.6;
   }
 
-  /* Scan lines */
   body::after {
     content:'';
     position:fixed; inset:0;
@@ -97,7 +93,6 @@
     100% { opacity:1; transform: translateY(0) skewX(0); }
   }
 
-  /* ── INTRO ── */
   .intro-wrapper {
     min-height: 100vh;
     display: flex; flex-direction: column;
@@ -214,7 +209,6 @@
   .start-btn:hover { color:#0a0a06; box-shadow: 0 0 25px rgba(184,160,58,0.35); }
   .start-btn:hover::before { transform: scaleX(1); }
 
-  /* ── TEST SCREEN ── */
   .test-header {
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 1.75rem;
@@ -246,19 +240,6 @@
     display:flex; align-items:center; justify-content:center;
     font-family: 'Special Elite', cursive;
     font-size: 9px; color: var(--accent);
-  }
-
-  .category-tag {
-    font-family: 'Special Elite', cursive;
-    font-size: 10px; letter-spacing: 3px;
-    color: var(--accent2); text-transform: uppercase;
-    margin-bottom: .75rem;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .category-tag::before {
-    content:'';
-    display:inline-block; width:16px; height:1px;
-    background: var(--accent2);
   }
 
   .q-text {
@@ -314,7 +295,6 @@
   .nav-btn.primary { background: rgba(184,160,58,0.12); border-color: var(--accent); color: var(--accent); }
   .nav-btn.primary:hover { background: var(--accent); color: #0a0a06; box-shadow: 0 0 18px rgba(184,160,58,0.3); }
 
-  /* ── RESULT ── */
   .result-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -527,7 +507,6 @@
 </div>
 
 <script>
-// Spore particles
 (function(){
   const f=document.getElementById('fog');
   const colors=['rgba(100,130,40,','rgba(184,160,58,','rgba(80,100,30,'];
@@ -548,10 +527,6 @@
     f.appendChild(el);
   }
 })();
-
-const dimNames={
-  EI:'행동 방식', SN:'정보 수집', TF:'판단 기준', JP:'생존 스타일'
-};
 
 const questions=[
   // EI
@@ -663,11 +638,12 @@ const survivors={
     compat:['장비 전문가','전략 설계자']},
   ENTP:{name:'마운자로 김예림',sub:'당신은 조금 다운된 상태의 김예림입니다',emoji:'💣',
     desc:'ㅋ',
+    traits:['독창적 발상','논쟁을 즐김','빠른 적응력','가능성 탐색'],
     compat:['예언자 전략가','심리 치유사']},
   INTP:{name:'감염 분석가',sub:'THE VIRUS ANALYST',emoji:'🧫',
     desc:'좀비 바이러스의 작동 원리, 감염 경로, 변이 패턴을 연구하는 과학자 유형입니다. 지식 그 자체가 목적이며, 이 사람의 연구가 언젠가 인류를 구할 수도 있습니다.',
     traits:['심층적 분석 능력','독창적 이론화','논리적 일관성','독립적 탐구 정신'],
-    compat:['파괴적 혁신가','예언자 전략가']},
+    compat:['예언자 전략가','전략 설계자']},
   ENFJ:{name:'집단 결속자',sub:'THE UNITY LEADER',emoji:'🔥',
     desc:'무너진 사람들에게 다시 살아갈 이유를 심어주는 카리스마형 리더입니다. 공동체 전체의 잠재력을 끌어올리며, 자신보다 타인의 성장에서 보람을 찾습니다.',
     traits:['강력한 영감 전달','공감형 리더십','전체 조화 추구','타인 성장 지원'],
@@ -675,17 +651,17 @@ const survivors={
   INFJ:{name:'폐허의 예언자',sub:'THE RUINS PROPHET',emoji:'🕯️',
     desc:'표면 아래의 진실을 꿰뚫는 희귀한 통찰력의 소유자입니다. 강한 신념과 이상으로 자신만의 방향을 걷고, 타인의 내면을 직관적으로 파악합니다. 말수는 적지만 한마디 한마디가 무겁습니다.',
     traits:['날카로운 직관','강한 이상 추구','섬세한 공감','독보적 통찰력'],
-    compat:['집단 결속자','파괴적 혁신가']},
+    compat:['집단 결속자','감염 분석가']},
   ENFP:{name:'평범한 김예림',sub:'당신은 평범한 상태의 김예림입니다',emoji:'🕊️',
     desc:'당신은 오늘 계란후라이가 3개나 올라간 돌솥비빔밥을 먹은 김예림님입니다.',
+    traits:['넘치는 에너지','열린 사고','강한 공감 능력','자유로운 영혼'],
     compat:['폐허의 예언자','심리 치유사']},
   INFP:{name:'이상주의 방랑자',sub:'THE LONE IDEALIST',emoji:'🌑',
     desc:'내면의 나침반을 따라 움직이는 고독한 생존자입니다. 강한 가치관과 이상으로 세상의 의미를 탐구하며, 진정성 없는 것은 본능적으로 거부합니다. 조용하지만 가장 오래 기억되는 사람입니다.',
     traits:['깊은 이상주의','흔들리지 않는 가치관','섬세한 감수성','창의적 표현력'],
-    compat:['희망 전도사','폐허의 예언자']},
+    compat:['집단 결속자','폐허의 예언자']},
 };
 
-// Fisher-Yates shuffle
 function shuffle(arr){
   const a=[...arr];
   for(let i=a.length-1;i>0;i--){
@@ -710,7 +686,6 @@ function startTest(){
 function render(){
   const q=shuffledQ[cur];
   document.getElementById('qnum-disp').textContent=String(cur+1).padStart(2,'0');
-
   document.getElementById('qtext').textContent=q.text;
 
   const pct=Math.round((cur+1)/shuffledQ.length*100);
@@ -781,7 +756,6 @@ function showResult(){
     </div>`;
   }).join('');
 
-  // wait for glitch-in animation (.4s) to finish, then trigger width transition
   setTimeout(()=>{
     document.querySelectorAll('.dim-bar-fill').forEach(el=>{
       el.style.width=el.dataset.pct+'%';
